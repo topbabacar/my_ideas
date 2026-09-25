@@ -1,3 +1,4 @@
+```tsx
 import { useMemo, useState } from 'react'
 import { ArrowRight, Check, Menu, Search, ShoppingBag, Sparkles, X } from 'lucide-react'
 import ProductCard from './components/ProductCard'
@@ -96,48 +97,9 @@ export default function App() {
             </div>
           </div>
 
-          {/* Hero visual remplacé par un SVG neutre inline */}
-          <div className="hero-visual" aria-hidden="true">
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 1200 800"
-              preserveAspectRatio="xMidYMid slice"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Bannière neutre"
-            >
-              <rect width="100%" height="100%" fill="#0f1720" />
-              <g transform="translate(80,120)">
-                <rect x="0" y="0" width="1040" height="560" rx="8" fill="#111827" />
-                <g transform="translate(40,40)">
-                  <rect x="0" y="0" width="960" height="480" rx="6" fill="#0b1220" />
-                  <text
-                    x="480"
-                    y="240"
-                    fill="#e6e6e6"
-                    fontSize="36"
-                    fontFamily="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                  >
-                    NOIRE — Bannière
-                  </text>
-                  <text
-                    x="480"
-                    y="290"
-                    fill="#9ca3af"
-                    fontSize="16"
-                    fontFamily="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                  >
-                    Collection — minimal, moderne, locale
-                  </text>
-                </g>
-              </g>
-            </svg>
-          </div>
+          {/* Bloc visuel vide pour l'entête (aucune image affichée) */}
+          <div className="hero-visual" aria-hidden="true" />
+
         </section>
 
         <section id="collection" className="collection section">
@@ -170,7 +132,7 @@ export default function App() {
 
         <section id="about" className="about section">
           <div className="about-image">
-            {/* Image d'illustration de la section À propos remplacée par un SVG neutre pour cohérence */}
+            {/* Illustration simple : conserve la mise en page sans image réelle */}
             <svg
               width="100%"
               height="100%"
@@ -260,3 +222,4 @@ export default function App() {
     </div>
   )
 }
+```
