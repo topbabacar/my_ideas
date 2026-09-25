@@ -1,0 +1,10 @@
+import { Minus,Plus,Trash2,X } from 'lucide-react'
+import type { Product } from '../data/products'
+import { formatPrice } from '../data/products'
+export type CartItem=Product&{quantity:number}
+type Props={items:CartItem[];open:boolean;onClose:()=>void;onChangeQuantity:(id:number,delta:number)=>void;onRemove:(id:number)=>void}
+export default function CartDrawer({items,open,onClose,onChangeQuantity,onRemove}:Props){
+if(!open)return null
+const total=items.reduce((s,i)=>s+i.price*i.quantity,0)
+const prepare=()=>{const text='Commande NOIRE\n'+items.map(i=>i.quantity+' × '+i.name+' — '+formatPrice(i.price*i.quantity)).join('\n')+'\nTotal : '+formatPrice(total);navigator.clipboard?.writeText(text);alert('Récapitulatif copié. Envoyez-le au vendeur par WhatsApp ou message.')}
+return <div className="drawer-backdrop" onClick={onClose}><aside className="cart-drawer" onClick={e=>e.stopPropagation()}><div className="drawer-head"><div><span className="eyebrow">Votre sélection</span><h2>Panier</h2></div><button className="icon-btn ghost" onClick={onClose}><X/></button></div><div className="cart-list">{items.length===0?<div className="empty-cart"><span>🛍️</span><h3>Votre panier est vide</h3><p>Ajoutez une pièce pour commencer.</p></div>:items.map(item=><div className="cart-item" key={item.id}><img src={item.image} alt=""/><div className="cart-item-main"><strong>{item.name}</strong><span>{formatPrice(item.price)}</span><div className="quantity"><button onClick={()=>onChangeQuantity(item.id,-1)}><Minus size={14}/></button><b>{item.quantity}</b><button onClick={()=>onChangeQuantity(item.id,1)}><Plus size={14}/></button></div></div><button className="remove-btn" onClick={()=>onRemove(item.id)}><Trash2 size={16}/></button></div>)}</div><div className="cart-footer"><div className="total-row"><span>Total</span><strong>{formatPrice(total)}</strong></div><button className="primary-btn full" disabled={!items.length} onClick={prepare}>Préparer ma commande</button><small>Prototype sans paiement en ligne.</small></div></aside></div>}
